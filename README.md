@@ -3,6 +3,8 @@
 A complete end-to-end data science project analyzing customer churn patterns
 for a telecom company using Python, Pandas, Seaborn, and Scikit-learn.
 
+[Run on Google Colab](https://colab.research.google.com/github/rpravee/telecom-churn-analysis/blob/main/churn_analysis.ipynb)
+
 ## Dataset
 - **Source:** [Kaggle — Telco Customer Churn](https://www.kaggle.com/datasets/blastchar/telco-customer-churn)
 - **Size:** 7,032 customers, 21 features
