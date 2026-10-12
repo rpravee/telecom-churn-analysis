@@ -8,7 +8,7 @@ This project goes beyond "fit a model, report F1". It selects models with proper
 
 ## Headline results (locked test set, 1,409 customers)
 
-| | |
+| Metric | Result |
 |---|---|
 | Selected model | Tuned and calibrated **logistic regression** (simplest model within 1 standard error of the best CV score) |
 | ROC-AUC | **0.841** (95% bootstrap CI 0.817 to 0.861) |
