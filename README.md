@@ -41,6 +41,7 @@ src/
   profit.py           retention economics, profit curve, optimal threshold
   train.py            CLI: reproduces the notebook's final model
   predict.py          load the saved model and score new customers
+api.py                FastAPI service: POST /predict scores one customer
 tests/                pytest suite (cleaning, leakage, probabilities, profit maths, selection rule)
 models/               churn_model.joblib (model + threshold + metadata)
 reports/              metrics.json, figures/
@@ -53,7 +54,7 @@ pip install -r requirements.txt
 jupyter lab notebooks/churn_analysis_final.ipynb      # or: jupyter nbconvert --execute --to notebook ...
 python -m src.train                                    # retrain + save model (about 1 min on a laptop)
 python -m src.train --contact-cost 300 --success-rate 0.2   # re-run with your own campaign economics
-pytest                                                 # 12 tests
+pytest                                                 # 17 tests
 ```
 
 Score new customers:
@@ -66,6 +67,14 @@ X, _ = split_xy(clean(load_raw()).head(10))
 print(score(X))          # churn_probability, contact (bool), risk_tier
 ```
 
+## Serve it as an API
+
+```bash
+uvicorn api:app --reload
+```
+
+Open `http://127.0.0.1:8000/docs` for interactive documentation. `POST /predict` takes one customer and returns the churn probability, the contact decision and a risk tier. Invalid input is rejected with a 422 error.
+
 ## Limitations
 
 - Snapshot data with no time dimension. A real deployment needs out-of-time validation and drift monitoring.
@@ -74,9 +83,9 @@ print(score(X))          # churn_probability, contact (bool), risk_tier
 - `gender` and `SeniorCitizen` are used as features. Audit or remove protected and proxy attributes in production.
 - Hyper-parameter search scores are slightly optimistic because the best CV score is selected. The final locked-test numbers are the unbiased estimate.
 
-## Next steps
+## Next step
 
-Serve `models/churn_model.joblib` behind **FastAPI + Docker**, add request logging, latency tracking and drift monitoring.
+ Containerize the API with Docker and add request logging.
 
 ## Data source
 
