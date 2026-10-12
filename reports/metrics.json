@@ -1,0 +1,26 @@
+{
+  "model": "Logistic Regression",
+  "n_train": 5634,
+  "n_test": 1409,
+  "cv_roc_auc_tuned": {
+    "Logistic Regression": 0.8462,
+    "Decision Tree": 0.8308,
+    "Random Forest": 0.8481,
+    "LightGBM": 0.85
+  },
+  "test_roc_auc": 0.8407,
+  "test_roc_auc_ci95": [
+    0.8175,
+    0.8614
+  ],
+  "test_pr_auc": 0.6269,
+  "test_brier": 0.1388,
+  "threshold": 0.36,
+  "economics_assumptions": {
+    "contact_cost": 500,
+    "customer_value": 5000,
+    "success_rate": 0.3
+  },
+  "test_recall_at_threshold": 0.7059,
+  "test_precision_at_threshold": 0.5466
+}
